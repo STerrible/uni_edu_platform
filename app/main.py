@@ -10,13 +10,13 @@ from app.api.students import router as students_router
 settings = get_settings()
 
 # Создаем само приложение FastAPI
-# ВАЖНО: переменная должна называться именно "app"
+# переменная должна называться именно "app"
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION
 )
 
-# Подключаем роутер аутентификации
+# Тут подключаем роутер аутентификации
 app.include_router(auth_router)
 app.include_router(courses_router)
 app.include_router(lessons_router)

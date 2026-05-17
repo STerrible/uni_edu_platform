@@ -9,6 +9,6 @@ engine = create_engine(settings.DATABASE_URL, connect_args={"check_same_thread":
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# ОПРЕДЕЛЕНИЕ БАЗЫ (Создаём пустой подкласс)
+# База, пустой класс (Тут создаём пустой подкласс)
 class Base(DeclarativeBase):
     pass

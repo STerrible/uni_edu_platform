@@ -51,7 +51,7 @@ class CourseProgressResponse(BaseModel):
     course_id: int
     course_title: str
     progress: float
-    total_tests_passed: int = 0  # Заглушка, можно доработать позже
+    total_tests_passed: int = 0  # Пока заглушка, можно доработать позже
     
     model_config = ConfigDict(from_attributes=True)
 
