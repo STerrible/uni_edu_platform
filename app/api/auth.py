@@ -13,7 +13,7 @@ settings = get_settings()
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def register(user_data: UserCreate, db: Session = Depends(get_db)):
-    # 1. Проверяем, нет ли уже такого логина
+    # 1. Тут проверяем, нет ли уже такого логина
     existing_user = db.query(User).filter(User.username == user_data.username).first()
     if existing_user:
         raise HTTPException(status_code=400, detail="Пользователь с таким логином уже существует")

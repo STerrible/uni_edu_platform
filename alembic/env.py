@@ -5,14 +5,14 @@ from alembic import context
 import sys
 import os
 
-# ВАЖНО: Добавляем корень проекта в пути Python, 
+# Добавляем корень проекта в пути Python, 
 # чтобы Alembic мог импортировать модуль 'app'
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Импортируем Base, от которого наследуются все модели
+# Подтягиваем Base, от которого наследуются все модели
 from app.core.database import Base
 
-# Импортируем сами модели, чтобы они "зарегистрировались" в Base.metadata
+# Подтягиваем сами модели, чтобы они "зарегистрировались" в Base.metadata
 # Без этого Alembic не увидит таблицы!
 from app.models import user
 from app.models import course
@@ -33,7 +33,7 @@ if db_url:
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Подключаем метаданные наших моделей
+# Тут подключаем метаданные наших моделей
 target_metadata = Base.metadata
 
 def run_migrations_offline() -> None:

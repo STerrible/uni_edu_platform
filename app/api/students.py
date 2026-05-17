@@ -57,7 +57,7 @@ def get_test(test_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Тест не найден")
     return test
 
-# 🔹 НОВОЕ: Записаться на курс
+# Записаться на курс
 @router.post("/courses/{course_id}/enroll", status_code=status.HTTP_201_CREATED)
 def enroll_course(
     course_id: int,
@@ -68,7 +68,7 @@ def enroll_course(
     if not course:
         raise HTTPException(status_code=404, detail="Курс не найден")
     
-    # Проверяем, не записан ли уже
+    # Тут проверяем, не записан ли уже
     exists = db.query(UserCourse).filter(
         UserCourse.user_id == current_user.id,
         UserCourse.course_id == course_id
@@ -81,7 +81,7 @@ def enroll_course(
     db.commit()
     return {"message": f"Вы успешно записались на курс '{course.title}'"}
 
-# 🔹 ОБНОВЛЁННОЕ: Отправить ответ на тест с сохранением прогресса
+# Отправить ответ на тест с сохранением прогресса
 @router.post("/tests/{test_id}/submit", response_model=TestResultResponse)
 def submit_test_answer(
     test_id: int,
@@ -95,7 +95,7 @@ def submit_test_answer(
     
     is_correct = answer_data.answer.strip().lower() == test.correct_answer.strip().lower()
     
-    # Сохраняем результат в историю
+    # Тут сохраняем результат в историю
     result = UserTestResult(
         user_id=current_user.id,
         test_id=test_id,
@@ -117,7 +117,7 @@ def submit_test_answer(
         correct_answer=test.correct_answer if not is_correct else None
     )
 
-# 🔹 НОВОЕ: Личный кабинет: мои курсы
+# Личный кабинет: мои курсы
 @router.get("/my-courses", response_model=list[MyCourseResponse])
 def get_my_courses(
     db: Session = Depends(get_db),

@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-# Подключаемся к нашей базе
+# Тут подключаемся к нашей базе
 engine = create_engine("sqlite:///./educational_platform.db")
 
 print("📋 Список таблиц в базе данных:")
